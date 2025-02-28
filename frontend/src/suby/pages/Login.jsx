@@ -1,42 +1,60 @@
 import React, { useState } from 'react';
-import './Login.css';  //  CSS file import karein
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import './Login.css';  // CSS File Import
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [user, setUser] = useState({ email: '', password: '' });
+  const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Email:", email);
-        console.log("Password:", password);
-    };
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
-    return (
-        <div className="login-container">
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="input-group">
-                    <label>Email:</label>
-                    <input 
-                        type="email" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        required
-                    />
-                </div>
-                <div className="input-group">
-                    <label>Password:</label>
-                    <input 
-                        type="password" 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        required
-                    />
-                </div>
-                <button type="submit" className="login-btn">Login</button>
-            </form>
-        </div>
-    );
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/login", user);
+      console.log("API Response:", response.data);
+
+      if (response.status === 200) {
+        alert("Login Successful!");
+
+        localStorage.setItem("user", JSON.stringify({
+          username: response.data.username,
+          email: user.email  // ✅ Email Saved in LocalStorage
+        }));
+
+        navigate('/dashboard');  
+      } else {
+        alert("Login Failed: " + response.data.message);
+      }
+    } catch (error) {
+      console.error("Login Error:", error.response?.data || error);
+      alert("Error: " + (error.response?.data.message || "Invalid Credentials"));
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <h2>Login</h2>
+      <div className="input-group">
+        <label>Email:</label>
+        <input type="email" name="email" placeholder="Enter your email" onChange={handleChange} required />
+      </div>
+      <div className="input-group">
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Enter your password" onChange={handleChange} required />
+      </div>
+      
+      {/* ✅ Login Button */}
+      <button className="login-btn" onClick={handleLogin}>Login</button>
+
+      {/* ✅ Home Button */}
+      <button className="home-btn" onClick={() => navigate('/')} style={{
+       
+      }}>Go to Home</button>
+    </div>
+  );
 };
 
 export default Login;

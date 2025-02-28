@@ -87,8 +87,11 @@ body {
 }
 
 .btnSection button {
-    border: none;
-    background: none;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .btnIcons {
