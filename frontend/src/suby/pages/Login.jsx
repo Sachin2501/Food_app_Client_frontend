@@ -13,7 +13,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("https://food-app-admin-backend-ict7.onrender.com", user);
+      const response = await axios.post("https://food-app-client-backend.onrender.com", user);
       console.log("API Response:", response.data);
 
       if (response.status === 200) {
