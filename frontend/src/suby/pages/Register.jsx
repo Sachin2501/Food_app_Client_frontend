@@ -22,7 +22,7 @@ const Register = () => {
     try {
       console.log("Sending Data to API:", user); //  Debugging API request
 
-      const response = await axios.post("http://localhost:3000/register", user);
+      const response = await axios.post("https://food-app-admin-backend-ict7.onrender.com", user);
       
       console.log("API Response:", response.data); // Debugging API response
       
