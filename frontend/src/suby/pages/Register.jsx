@@ -22,7 +22,7 @@ const Register = () => {
     try {
       console.log("Sending Data to API:", user); //  Debugging API request
 
-      const response = await axios.post("https://food-app-client-backend.onrender.com", user);
+      const response = await axios.post("https://food-app-client-backend.onrender.com/Register", user);
       
       console.log("API Response:", response.data); // Debugging API response
       
