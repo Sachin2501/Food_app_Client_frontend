@@ -29,7 +29,7 @@ const FirmCollections = () => {
 
   return (
     <>
-      <h3>Restaurants with online food delivery in Hyderabad</h3>
+      <h3>Restaurants with online food delivery in Patna</h3>
       <div className="filterButtons">
         <button onClick={() => filterHandler("All", 'all')} className={activeCategory === 'all' ? 'activeButton': ''}>All</button>
         <button onClick={() => filterHandler("South-Indian" , 'south-indian')} className={activeCategory === 'south-indian' ? 'activeButton': ''} >South-Indian</button>
