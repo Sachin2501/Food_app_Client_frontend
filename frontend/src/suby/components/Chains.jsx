@@ -75,7 +75,7 @@ const handleScroll =(direction)=>{
         <FaRegArrowAltCircleRight className='btnIcons'/>
         </button>
       </div>
-            <h3 className='chainTitle'>Top restaurant in Hyderabad</h3>
+            <h3 className='chainTitle'>Top restaurant in Patna</h3>
         <section className="chainSection" id="chainGallery" onScroll={(e)=>setScrollPosition(e.target.scrollf)}>
             {vendorData.vendors && vendorData.vendors.map((vendor)=>{
                    return(
